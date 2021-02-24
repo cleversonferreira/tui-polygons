@@ -1,0 +1,55 @@
+version: '3.7'
+
+services:
+  polygons_main:
+    container_name: polygons_main
+    tty: true
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3001:3001
+      - 9229:9229
+    command: yarn run start:dev
+    depends_on:
+      - polygons_mongo
+    networks:
+      - polynet
+
+  polygons_mongo:
+    image: mongo
+    container_name: polygons_mongo
+    tty: true
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: tui2020
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./docker/volumes/mongodb:/data/db
+    networks:
+      - polynet
+
+  polygons_mongo-client:
+    image: mongo-express
+    container_name: polygons_mongo-client
+    tty: true
+    ports:
+      - 3002:3002
+    environment:
+      ME_CONFIG_BASICAUTH_USERNAME: tui
+      ME_CONFIG_BASICAUTH_PASSWORD: tui2020
+      ME_CONFIG_MONGODB_PORT: 27017
+      ME_CONFIG_MONGODB_ADMINUSERNAME: tui
+      ME_CONFIG_MONGODB_ADMINPASSWORD: tui2020
+    links:
+      - polygons_mongo
+    networks:
+      - polynet
+
+networks:
+  polynet:
+    driver: bridge
