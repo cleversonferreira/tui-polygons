@@ -40,3 +40,9 @@ docker-compose ps
 ```bash
 docker-compose exec {container_name} {command}
 ```
+
+- View container logs
+
+```bash
+docker-compose logs -f polygons_main
+```
