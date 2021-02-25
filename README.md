@@ -11,8 +11,11 @@ docker-compose up -d
 ##### Containers
 
 API: http://localhost:3000
+
 Mongo: http://localhost:37017
+
 Mongo URL: `mongodb://localhost:27017/polygons`
+
 Mongo Client: http://localhost:3300
 
 ###### Util commands

@@ -33,6 +33,8 @@ services:
   polygons_mongo_client:
     image: mongoclient/mongoclient:latest
     container_name: polygons_mongo_client
+    environment:
+      MONGOCLIENT_DEFAULT_CONNECTION_URL: mongodb://localhost:27017/polygons
     hostname: mongoclient
     depends_on:
       - polygons_mongo
