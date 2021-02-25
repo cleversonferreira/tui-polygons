@@ -1,53 +1,42 @@
-## Tui Polygons
+# Tui Polygons
 
-## Description
+##### Running the app
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+Run Docker command:
 
 ```bash
-$ npm install
+docker-compose up -d
 ```
 
-## Running the app
+##### Containers
+
+API: http://localhost:3000
+Mongo: http://localhost:37017
+Mongo URL: `mongodb://localhost:27017/polygons`
+Mongo Client: http://localhost:3300
+
+###### Util commands
+
+- Turn off project
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+docker-compose down
 ```
 
-## Test
+- Rebuild project
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+docker-compose up -d --build --remove-orphans
 ```
 
-## Docker
+- View active containers
 
-## Database
+```bash
+docker-compose ps
+```
 
-mongoDB URL: mongodb://localhost:27017/polygons
+- Running commands inside docker containers
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+```bash
+docker-compose exec {container_name} {command}
+```
